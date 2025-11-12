@@ -12,6 +12,9 @@
         <th>Correo</th>
         <th>Teléfono</th>
         <th>Especialidad</th>
+        <th>Fecha de Contratación</th>
+        <th>Salario</th>
+        <th>Clases Asignadas</th>
         <th>Opciones</th>
       </tr>
     </thead>
@@ -23,6 +26,17 @@
         <td>{{ profesor.correo }}</td>
         <td>{{ profesor.telefono }}</td>
         <td>{{ profesor.especialidad }}</td>
+        <td>{{ profesor.fecha_contratacion }}</td>
+        <td>${{ profesor.salario }}</td>
+        <td>
+          {% if profesor.clases.all %}
+            {% for clase in profesor.clases.all %}
+              <span class="badge bg-info">{{ clase.nombre }}</span>
+            {% endfor %}
+          {% else %}
+            <span class="text-muted">-</span>
+          {% endif %}
+        </td>
         <td class="text-center">
           <a href="{% url 'actualizar_profesor' profesor.id %}" class="btn btn-warning btn-sm"><i class="bi bi-pencil"></i></a>
           <a href="{% url 'borrar_profesor' profesor.id %}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
